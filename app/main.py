@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+
 from app.database import Base, engine
 from app.routers import router as item_router
 
@@ -10,6 +11,12 @@ app = FastAPI(title="FastAPI + Postgres CRUD API")
 # Connect the item endpoints
 app.include_router(item_router)
 
+
 @app.get("/")
 def home():
     return {"message": "API is up and running!"}
+
+
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}
